@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-VELOCITY | Pulsar Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff5e00;
+            --bg: #0a0a0a;
+            --surface: #161616;
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
+            --accent-glow: rgba(255, 94, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 10% 0;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            font-weight: 800;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%);
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3.5rem, 7vw, 5.5rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            font-style: italic;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: #fff;
+        }
+
+        .description {
+            color: var(--text-dim);
+            font-size: 18px;
+            max-width: 480px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            color: #fff;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 20px 45px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+        }
+
+        .btn-action:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 94, 0, 0.3);
+        }
+
+        /* --- CONTENEDOR DE IMAGEN GENERADA --- */
+        .hero-image-container {
+            flex: 1.5;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-frame {
+            width: 100%;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .actual-product-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.8));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .glow-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* --- SPECS --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: #050505;
+        }
+
+        .info-card {
+            padding: 80px 40px;
+            border-right: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            transition: background 0.4s;
+        }
+
+        .info-card:hover {
+            background: #0a0a0a;
+        }
+
+        .info-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .info-card p {
+            color: var(--text-dim);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 1100px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-bottom: 80px;
+                padding-top: 140px;
+            }
+            .description { margin: 0 auto 30px; }
+            .price-box { justify-content: center; }
+            .info-grid { grid-template-columns: 1fr; }
+            .info-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">X<span>VELOCITY</span></div>
+        <div style="font-size: 11px; font-weight: 700; color: var(--text-dim); letter-spacing: 2px;">EDICIÓN PULSAR 2024</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Nueva Colección: Pulsar</span>
+            <h1>Engineered<br>Future</h1>
+            <p class="description">
+                Una evolución radical del diseño HSTN. Los X-VELOCITY Pulsar combinan una montura de carbono industrial con lentes iridium naranja, diseñados para el máximo contraste en condiciones de velocidad.
+            </p>
+            <div class="price-box">
+                <div class="price">229,00 €</div>
+                <button class="btn-action">Explorar</button>
+            </div>
+        </div>
+
+        <div class="hero-image-container">
+            <div class="glow-effect"></div>
+            <div class="product-frame">
+                <!-- Usando la versión generada por la IA basada en la foto original -->
+                <img src="https://files.oaiusercontent.com/file-7F8fC9G8z8eH8J8K8L8M8N8O?se=2024-04-10T15%3A30%3A00Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20private%2C%20immutable&rscd=attachment%3B%20filename%3Dpulsar_edition.png&sig=generated_image_placeholder" 
+                     alt="Lentes X-VELOCITY Pulsar Edition" 
+                     class="actual-product-img"
+                     onerror="this.onerror=null; this.src='https://files.oaiusercontent.com/file-pUuGvS9FzWzXzYzZzAzBzCzD?se=2024-04-10T15%3A30%3A00Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20private%2C%20immutable&rscd=attachment%3B%20filename%3Dfallback.png&sig=fallback_logic';">
+            </div>
+        </div>
+    </section>
+
+    <section class="info-grid">
+        <div class="info-card">
+            <h3>Visión Pulsar™</h3>
+            <p>Lentes con tecnología de filtrado selectivo que resalta los obstáculos en terrenos de alta velocidad.</p>
+        </div>
+        <div class="info-card">
+            <h3>Chasis de Carbono</h3>
+            <p>Estructura reforzada con polímeros de grado aeroespacial para una ligereza total y resistencia extrema.</p>
+        </div>
+        <div class="info-card">
+            <h3>Ajuste Dinámico</h3>
+            <p>Puntos de contacto antideslizantes que se activan con el calor corporal para un agarre inamovible.</p>
+        </div>
+    </section>
+
+</body>
+</html>
