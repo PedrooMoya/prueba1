@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO - Reloj Digital Modular | Chile DLH</title>
+    <!-- Google Fonts: Estilo industrial y técnico -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@300&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --accent-glow: rgba(30, 58, 138, 0.4);
+            --bg-dark: #0a0a0b;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-dark);
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- SECCIÓN HERO (Basada en la estética de la Foto 1) --- */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: radial-gradient(circle at center, #111827 0%, #000 100%);
+            position: relative;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-title-box { z-index: 2; animation: fadeIn 2s ease-out; }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3.5rem, 12vw, 8rem);
+            letter-spacing: 15px;
+            margin: 0;
+            background: linear-gradient(to bottom, #fff 40%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+        }
+
+        .hero-image {
+            max-width: 550px;
+            width: 90%;
+            margin-top: -30px;
+            filter: drop-shadow(0 0 50px var(--accent-glow));
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover { transform: scale(1.03); }
+
+        /* --- SECCIÓN DESPIECE Y SPECS (Basada en la Foto 2) --- */
+        .specs-section {
+            padding: 100px 5%;
+            background: #000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .exploded-view-container { flex: 1; min-width: 300px; max-width: 600px; }
+        .exploded-view-container img { 
+            width: 100%; 
+            border-radius: 4px; 
+            border: 1px solid var(--border);
+            filter: contrast(1.1);
+        }
+
+        .specs-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .specs-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 15px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .spec-item { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .spec-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #64748b; text-transform: uppercase; margin-bottom: 5px; }
+        .spec-value { font-weight: 600; color: #cbd5e1; font-size: 0.9rem; }
+
+        /* --- SECCIÓN VIDEO DE PRESENTACIÓN --- */
+        .video-section {
+            padding: 100px 5%;
+            text-align: center;
+            background: radial-gradient(circle at bottom, #111827 0%, #000 100%);
+        }
+
+        .video-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 80px rgba(30, 58, 138, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- ANIMACIONES Y RESPONSIVE --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { 
+            padding: 50px; 
+            text-align: center; 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.7rem; 
+            color: #475569; 
+            border-top: 1px solid var(--border);
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 3rem; letter-spacing: 10px; }
+            .specs-grid { grid-template-columns: 1fr; }
+            header { height: auto; padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero / Portada -->
+    <header>
+        <div class="hero-title-box">
+            <h1>UNO</h1>
+            <p style="letter-spacing: 8px; color: #888; font-size: 0.8rem; margin-top: -10px; text-transform: uppercase;">Reloj Digital Modular</p>
+        </div>
+        <!-- IMAGEN 1 -->
+        <img src="reloj-uno.png" alt="Reloj UNO" class="hero-image">
+        <p style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary-blue); margin-top: 20px; letter-spacing: 3px;">[ PRECISIÓN DISEÑADA ★ CHILE DLH ]</p>
+    </header>
+
+    <!-- Sección de Especificaciones Técnicas y Despiece -->
+    <section class="specs-section">
+        <div class="exploded-view-container">
+            <!-- IMAGEN 2 -->
+            <img src="despiece-uno.jpg" alt="Despiece Reloj UNO">
+        </div>
+
+        <div class="specs-card">
+            <h2>ESPECIFICACIONES TÉCNICAS</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-label">Caja</span>
+                    <span class="spec-value">Resina</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Cristal</span>
+                    <span class="spec-value">Cristal Acrílico</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Correa</span>
+                    <span class="spec-value">De nailon</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Mecanismo</span>
+                    <span class="spec-value">Cuarzo</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Tamaño</span>
+                    <span class="spec-value">Mediano</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Dimensiones</span>
+                    <span class="spec-value">38 x 38 x 9 mm</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Peso</span>
+                    <span class="spec-value">31g</span>
+                </div>
+                <div class="spec-item" style="border-color: var(--primary-blue);">
+                    <span class="spec-label">Ingeniería</span>
+                    <span class="spec-value" style="color: #fff;">Calibre Chileno</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Video -->
+    <section class="video-section">
+        <h3 style="font-family: 'Orbitron'; letter-spacing: 5px; margin-bottom: 50px; text-transform: uppercase; font-size: 1.2rem;">video de presentación</h3>
+        <div class="video-wrapper">
+            <!-- VIDEO FUNCIONANDO (Link de inserción oficial) -->
+            <iframe 
+                src="https://www.youtube.com/embed/TjEAdsLx-B8" 
+                title="Presentación Reloj UNO" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        DANDO LA HORA &copy; 2024 | SANTIAGO, CHILE | DISEÑO ORIGINAL
+    </footer>
+
+</body>
+</html>
